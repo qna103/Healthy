@@ -15,16 +15,10 @@ def update_product(name, price):
 def delete(name):
     db.data.delete_one({'name' : name})
 
-# Tìm tất cả sản phẩm cùng loại
-def get_all_type(type_product):
-    return list(db.data.find({'type' : type_product}))
-
 # Hàm thêm sản phẩm
-def add_product(name, price, type_product, quantity):
-    db.data.insert_one({'name' : name, 'price' : price, 'type' : type_product, 'quantity': quantity})
+def add_product(name, price, img_url):
+    db.data.insert_one({'name' : name, 'price' : price, 'img_url' : img_url})
 
-# Cập nhật số lượng của mặt hàng, nếu số lượng = 0, xóa mặt hàng
-def update_quantity():
-    for i in db.data.find():
-        if db.data[i]['quantity'] == 0:
-            delete(db.data[i]['name']) 
+db.data.insert_one({'name' : 'Genius Joy', 'price' : '59.99$' , 'img_url' : '/static/images/Brain-Bot.png'})
+db.data.insert_one({'name' : 'Genius Consciousness', 'price' : '37.99$', 'img_url' : '/static/images/Brain-Bot.png'})
+db.data.insert_one({'name' : 'Genius Muscle Builder', 'price' : '89.99$', 'img_url' : '/static/images/Brain-Bot.png'})
